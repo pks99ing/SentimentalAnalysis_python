@@ -1,9 +1,3 @@
-
-# coding: utf-8
-
-# In[35]:
-
-
 '''
 import all the necessary libraray
 '''
@@ -11,15 +5,8 @@ import tweepy
 import matplotlib.pyplot as plt
 
 
-
-# In[86]:
-
-
 #import textblob which is build on top of nltk(natural language processing toolkit)
 from textblob import TextBlob
-
-
-# In[87]:
 
 
 '''
@@ -31,15 +18,10 @@ a_key='1014829542622388224-2QWAliJQkJ79x32JXMT3rRS1Ddqq0K'
 a_secret='Vqt5UR8hwYvCTmdd1fdj0QRAndGwY2eYJMWbbz6qRh5hD'
 
 
-# In[88]:
-
-
 #for calculating percentage
 def percentage_count(sentiments,number):
     return 100*float(sentiments)/float(number)
 
-
-# In[89]:
 
 
 #creating object of OAuthHandler class and passing consumers key and secret
@@ -47,15 +29,8 @@ def percentage_count(sentiments,number):
 auth=tweepy.OAuthHandler(c_key,c_secret)
 auth.set_access_token(a_key,a_secret)
 
-
-# In[91]:
-
-
 find=input('Enter the hashtag/keyword')
 count=input('Enter how many tweet u want to analyse')
-
-
-# In[ ]:
 
 
 #calling tweepy API and passing auth
@@ -63,15 +38,10 @@ api=tweepy.API(auth)
 public_tweet=api.search(q=find,count=count)
 
 
-# In[101]:
-
 
 negative=0
 positive=0
 neutral=0
-
-
-# In[102]:
 
 
 for tweet in public_tweet:
@@ -84,9 +54,6 @@ for tweet in public_tweet:
         negative+=1
 
 
-# In[103]:
-
-
 positive=percentage_count(positive,count)
 negative=percentage_count(negative,count)
 neutral=percentage_count(neutral,count)
@@ -96,19 +63,7 @@ negative=format(negative,'.2f')
 neutral=format(neutral,'.2f')
 
 
-# In[105]:
-
-
-
-
-
-# In[106]:
-
-
 contender=[positive,negative,neutral]
-
-
-# In[107]:
 
 
 plt.pie(contender,startangle=180,labels=['positive','negative','neutral'])
